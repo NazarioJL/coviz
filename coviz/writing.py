@@ -17,7 +17,7 @@ class InfluxDBDataWriter(CovidDataWriter):
     def __init__(self, url: str, token: str, org: str, bucket: str):
         self._org = org
         self._bucket = bucket
-        self._client = InfluxDBClient(url=url, token=token,)
+        self._client = InfluxDBClient(url=url, token=token)
         self._write_api = self._client.write_api()
 
     def write_data(self, data_point: CovidDataPoint) -> None:
@@ -37,7 +37,7 @@ class InfluxDBDataWriter(CovidDataWriter):
             .tag("county", data_point.county)
             .tag("lat", data_point.lat)
             .tag("long", data_point.long)
-            .value(data_point.value)
+            .field("count", data_point.value)
             .time(data_point.timestamp)
         )
         return point

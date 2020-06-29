@@ -1,5 +1,6 @@
 import argparse
 from datetime import datetime
+import time
 from typing import Optional
 
 from coviz.reading import CSSEDataReader
@@ -15,6 +16,7 @@ def main(
     org: str,
     bucket: str,
     start: Optional[str],
+    dry_run: bool,
 ):
 
     reader = CSSEDataReader(
@@ -29,10 +31,16 @@ def main(
         start_date = datetime.strptime(start, "%Y-%M-%d")
 
     for data_point in reader.get_data_points():
+        if dry_run:
+            print(f"Writing: {data_point}")
+            continue
         if start_date:
             if data_point.timestamp < start_date:
                 continue
         writer.write_data(data_point)
+
+    # FIXME: script will terminate before influxdb can flush all writes to server
+    time.sleep(2)
 
 
 def parse_args():
@@ -99,6 +107,13 @@ def parse_args():
         required=False,
         help="Optional inclusive start data for data to upload. The expected "
         "format is `YYYY-MM-DD` if not set, all data will be uploaded",
+    )
+
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        dest="dry_run",
+        required=False,
     )
 
     return parser.parse_args()
