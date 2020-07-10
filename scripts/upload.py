@@ -23,7 +23,7 @@ def main(
         file_name=file_name, measurement=DataMeasurementType(measurement),
     )
 
-    writer = InfluxDBDataWriter(url=url, token=api_key, org=org, bucket=bucket,)
+    writer = InfluxDBDataWriter(url=url, token=api_key, org=org, bucket=bucket)
 
     start_date: Optional[datetime] = None
 

@@ -1,0 +1,2299 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 2,
+  "iteration": 1594287009406,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "covid_influx_db",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Total ${measurement}",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/^$measurement$/",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=~",
+              "value": "/^$state$/"
+            },
+            {
+              "condition": "AND",
+              "key": "county",
+              "operator": "=~",
+              "value": "/^$county$/"
+            }
+          ]
+        },
+        {
+          "alias": "New ${measurement} per day",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/^$measurement$/",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1d"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=~",
+              "value": "/^$state$/"
+            },
+            {
+              "condition": "AND",
+              "key": "county",
+              "operator": "=~",
+              "value": "/^$county$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Total ${measurement} in ${state} (LOG)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 10,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "covid_influx_db",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 11,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Total ${measurement_2}",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/^$measurement_2$/",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=~",
+              "value": "/^$state_2$/"
+            },
+            {
+              "condition": "AND",
+              "key": "county",
+              "operator": "=~",
+              "value": "/^$county_2$/"
+            }
+          ]
+        },
+        {
+          "alias": "New ${measurement_2} per day",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "/^$measurement_2$/",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1d"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=~",
+              "value": "/^$state_2$/"
+            },
+            {
+              "condition": "AND",
+              "key": "county",
+              "operator": "=~",
+              "value": "/^$county_2$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Total ${measurement_2} in ${state_2} (${county_2})  (LOG)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 10,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 8,
+      "panels": [],
+      "title": "Washington Information",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "covid_influx_db",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Confirmed Cases per Day King County",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "confirmed",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1d"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=",
+              "value": "Washington"
+            },
+            {
+              "condition": "AND",
+              "key": "county",
+              "operator": "=",
+              "value": "King"
+            }
+          ]
+        },
+        {
+          "alias": "New Deaths per day King County",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "deaths",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1d"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=",
+              "value": "Washington"
+            },
+            {
+              "condition": "AND",
+              "key": "county",
+              "operator": "=",
+              "value": "King"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Deaths vs Confirmed King County",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 10,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "covid_influx_db",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Total Cases in WA",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "confirmed",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=",
+              "value": "Washington"
+            }
+          ]
+        },
+        {
+          "alias": "Total Cases per Day in WA",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "confirmed",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1d"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=",
+              "value": "Washington"
+            }
+          ]
+        },
+        {
+          "alias": "Total Cases in King County",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "confirmed",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=",
+              "value": "Washington"
+            },
+            {
+              "condition": "AND",
+              "key": "county",
+              "operator": "=",
+              "value": "King"
+            }
+          ]
+        },
+        {
+          "alias": "Total Cases per Day in King County",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "confirmed",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "24h"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state_province",
+              "operator": "=",
+              "value": "Washington"
+            },
+            {
+              "condition": "AND",
+              "key": "county",
+              "operator": "=",
+              "value": "King"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Cases in WA and King County",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 10,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "covid_influx_db",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Total Confirmed Cases",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "confirmed",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "country",
+              "operator": "=",
+              "value": "US"
+            }
+          ]
+        },
+        {
+          "alias": "New Cases per Day",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "confirmed",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "24h"
+                ],
+                "type": "derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "country",
+              "operator": "=",
+              "value": "US"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Confirmed Cases (US)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "confirmed",
+          "value": "confirmed"
+        },
+        "datasource": "covid_influx_db",
+        "definition": "SHOW MEASUREMENTS",
+        "hide": 0,
+        "includeAll": false,
+        "label": "measurement",
+        "multi": false,
+        "name": "measurement",
+        "options": [
+          {
+            "selected": true,
+            "text": "confirmed",
+            "value": "confirmed"
+          },
+          {
+            "selected": false,
+            "text": "deaths",
+            "value": "deaths"
+          }
+        ],
+        "query": "SHOW MEASUREMENTS",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "California",
+          "value": "California"
+        },
+        "datasource": "covid_influx_db",
+        "definition": "SHOW TAG VALUES ON covid WITH KEY = \"state_province\"",
+        "hide": 0,
+        "includeAll": false,
+        "label": "state",
+        "multi": false,
+        "name": "state",
+        "options": [
+          {
+            "selected": false,
+            "text": "Alabama",
+            "value": "Alabama"
+          },
+          {
+            "selected": false,
+            "text": "Alaska",
+            "value": "Alaska"
+          },
+          {
+            "selected": false,
+            "text": "American Samoa",
+            "value": "American Samoa"
+          },
+          {
+            "selected": false,
+            "text": "Arizona",
+            "value": "Arizona"
+          },
+          {
+            "selected": false,
+            "text": "Arkansas",
+            "value": "Arkansas"
+          },
+          {
+            "selected": true,
+            "text": "California",
+            "value": "California"
+          },
+          {
+            "selected": false,
+            "text": "Colorado",
+            "value": "Colorado"
+          },
+          {
+            "selected": false,
+            "text": "Connecticut",
+            "value": "Connecticut"
+          },
+          {
+            "selected": false,
+            "text": "Delaware",
+            "value": "Delaware"
+          },
+          {
+            "selected": false,
+            "text": "Diamond Princess",
+            "value": "Diamond Princess"
+          },
+          {
+            "selected": false,
+            "text": "District of Columbia",
+            "value": "District of Columbia"
+          },
+          {
+            "selected": false,
+            "text": "Florida",
+            "value": "Florida"
+          },
+          {
+            "selected": false,
+            "text": "Georgia",
+            "value": "Georgia"
+          },
+          {
+            "selected": false,
+            "text": "Grand Princess",
+            "value": "Grand Princess"
+          },
+          {
+            "selected": false,
+            "text": "Guam",
+            "value": "Guam"
+          },
+          {
+            "selected": false,
+            "text": "Hawaii",
+            "value": "Hawaii"
+          },
+          {
+            "selected": false,
+            "text": "Idaho",
+            "value": "Idaho"
+          },
+          {
+            "selected": false,
+            "text": "Illinois",
+            "value": "Illinois"
+          },
+          {
+            "selected": false,
+            "text": "Indiana",
+            "value": "Indiana"
+          },
+          {
+            "selected": false,
+            "text": "Iowa",
+            "value": "Iowa"
+          },
+          {
+            "selected": false,
+            "text": "Kansas",
+            "value": "Kansas"
+          },
+          {
+            "selected": false,
+            "text": "Kentucky",
+            "value": "Kentucky"
+          },
+          {
+            "selected": false,
+            "text": "Louisiana",
+            "value": "Louisiana"
+          },
+          {
+            "selected": false,
+            "text": "Maine",
+            "value": "Maine"
+          },
+          {
+            "selected": false,
+            "text": "Maryland",
+            "value": "Maryland"
+          },
+          {
+            "selected": false,
+            "text": "Massachusetts",
+            "value": "Massachusetts"
+          },
+          {
+            "selected": false,
+            "text": "Michigan",
+            "value": "Michigan"
+          },
+          {
+            "selected": false,
+            "text": "Minnesota",
+            "value": "Minnesota"
+          },
+          {
+            "selected": false,
+            "text": "Mississippi",
+            "value": "Mississippi"
+          },
+          {
+            "selected": false,
+            "text": "Missouri",
+            "value": "Missouri"
+          },
+          {
+            "selected": false,
+            "text": "Montana",
+            "value": "Montana"
+          },
+          {
+            "selected": false,
+            "text": "Nebraska",
+            "value": "Nebraska"
+          },
+          {
+            "selected": false,
+            "text": "Nevada",
+            "value": "Nevada"
+          },
+          {
+            "selected": false,
+            "text": "New Hampshire",
+            "value": "New Hampshire"
+          },
+          {
+            "selected": false,
+            "text": "New Jersey",
+            "value": "New Jersey"
+          },
+          {
+            "selected": false,
+            "text": "New Mexico",
+            "value": "New Mexico"
+          },
+          {
+            "selected": false,
+            "text": "New York",
+            "value": "New York"
+          },
+          {
+            "selected": false,
+            "text": "North Carolina",
+            "value": "North Carolina"
+          },
+          {
+            "selected": false,
+            "text": "North Dakota",
+            "value": "North Dakota"
+          },
+          {
+            "selected": false,
+            "text": "Northern Mariana Islands",
+            "value": "Northern Mariana Islands"
+          },
+          {
+            "selected": false,
+            "text": "Ohio",
+            "value": "Ohio"
+          },
+          {
+            "selected": false,
+            "text": "Oklahoma",
+            "value": "Oklahoma"
+          },
+          {
+            "selected": false,
+            "text": "Oregon",
+            "value": "Oregon"
+          },
+          {
+            "selected": false,
+            "text": "Pennsylvania",
+            "value": "Pennsylvania"
+          },
+          {
+            "selected": false,
+            "text": "Puerto Rico",
+            "value": "Puerto Rico"
+          },
+          {
+            "selected": false,
+            "text": "Rhode Island",
+            "value": "Rhode Island"
+          },
+          {
+            "selected": false,
+            "text": "South Carolina",
+            "value": "South Carolina"
+          },
+          {
+            "selected": false,
+            "text": "South Dakota",
+            "value": "South Dakota"
+          },
+          {
+            "selected": false,
+            "text": "Tennessee",
+            "value": "Tennessee"
+          },
+          {
+            "selected": false,
+            "text": "Texas",
+            "value": "Texas"
+          },
+          {
+            "selected": false,
+            "text": "Utah",
+            "value": "Utah"
+          },
+          {
+            "selected": false,
+            "text": "Vermont",
+            "value": "Vermont"
+          },
+          {
+            "selected": false,
+            "text": "Virgin Islands",
+            "value": "Virgin Islands"
+          },
+          {
+            "selected": false,
+            "text": "Virginia",
+            "value": "Virginia"
+          },
+          {
+            "selected": false,
+            "text": "Washington",
+            "value": "Washington"
+          },
+          {
+            "selected": false,
+            "text": "West Virginia",
+            "value": "West Virginia"
+          },
+          {
+            "selected": false,
+            "text": "Wisconsin",
+            "value": "Wisconsin"
+          },
+          {
+            "selected": false,
+            "text": "Wyoming",
+            "value": "Wyoming"
+          }
+        ],
+        "query": "SHOW TAG VALUES ON covid WITH KEY = \"state_province\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "*",
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "covid_influx_db",
+        "definition": "SHOW TAG VALUES ON covid WITH KEY = \"county\" WHERE state_province = '$state'",
+        "hide": 0,
+        "includeAll": true,
+        "label": "county",
+        "multi": true,
+        "name": "county",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Adams",
+            "value": "Adams"
+          },
+          {
+            "selected": false,
+            "text": "Asotin",
+            "value": "Asotin"
+          },
+          {
+            "selected": false,
+            "text": "Benton",
+            "value": "Benton"
+          },
+          {
+            "selected": false,
+            "text": "Chelan",
+            "value": "Chelan"
+          },
+          {
+            "selected": false,
+            "text": "Clallam",
+            "value": "Clallam"
+          },
+          {
+            "selected": false,
+            "text": "Clark",
+            "value": "Clark"
+          },
+          {
+            "selected": false,
+            "text": "Columbia",
+            "value": "Columbia"
+          },
+          {
+            "selected": false,
+            "text": "Cowlitz",
+            "value": "Cowlitz"
+          },
+          {
+            "selected": false,
+            "text": "Douglas",
+            "value": "Douglas"
+          },
+          {
+            "selected": false,
+            "text": "Ferry",
+            "value": "Ferry"
+          },
+          {
+            "selected": false,
+            "text": "Franklin",
+            "value": "Franklin"
+          },
+          {
+            "selected": false,
+            "text": "Garfield",
+            "value": "Garfield"
+          },
+          {
+            "selected": false,
+            "text": "Grant",
+            "value": "Grant"
+          },
+          {
+            "selected": false,
+            "text": "Grays Harbor",
+            "value": "Grays Harbor"
+          },
+          {
+            "selected": false,
+            "text": "Island",
+            "value": "Island"
+          },
+          {
+            "selected": false,
+            "text": "Jefferson",
+            "value": "Jefferson"
+          },
+          {
+            "selected": false,
+            "text": "King",
+            "value": "King"
+          },
+          {
+            "selected": false,
+            "text": "Kitsap",
+            "value": "Kitsap"
+          },
+          {
+            "selected": false,
+            "text": "Kittitas",
+            "value": "Kittitas"
+          },
+          {
+            "selected": false,
+            "text": "Klickitat",
+            "value": "Klickitat"
+          },
+          {
+            "selected": false,
+            "text": "Lewis",
+            "value": "Lewis"
+          },
+          {
+            "selected": false,
+            "text": "Lincoln",
+            "value": "Lincoln"
+          },
+          {
+            "selected": false,
+            "text": "Mason",
+            "value": "Mason"
+          },
+          {
+            "selected": false,
+            "text": "Okanogan",
+            "value": "Okanogan"
+          },
+          {
+            "selected": false,
+            "text": "Out of WA",
+            "value": "Out of WA"
+          },
+          {
+            "selected": false,
+            "text": "Pacific",
+            "value": "Pacific"
+          },
+          {
+            "selected": false,
+            "text": "Pend Oreille",
+            "value": "Pend Oreille"
+          },
+          {
+            "selected": false,
+            "text": "Pierce",
+            "value": "Pierce"
+          },
+          {
+            "selected": false,
+            "text": "San Juan",
+            "value": "San Juan"
+          },
+          {
+            "selected": false,
+            "text": "Skagit",
+            "value": "Skagit"
+          },
+          {
+            "selected": false,
+            "text": "Skamania",
+            "value": "Skamania"
+          },
+          {
+            "selected": false,
+            "text": "Snohomish",
+            "value": "Snohomish"
+          },
+          {
+            "selected": false,
+            "text": "Spokane",
+            "value": "Spokane"
+          },
+          {
+            "selected": false,
+            "text": "Stevens",
+            "value": "Stevens"
+          },
+          {
+            "selected": false,
+            "text": "Thurston",
+            "value": "Thurston"
+          },
+          {
+            "selected": false,
+            "text": "Unassigned",
+            "value": "Unassigned"
+          },
+          {
+            "selected": false,
+            "text": "Wahkiakum",
+            "value": "Wahkiakum"
+          },
+          {
+            "selected": false,
+            "text": "Walla Walla",
+            "value": "Walla Walla"
+          },
+          {
+            "selected": false,
+            "text": "Whatcom",
+            "value": "Whatcom"
+          },
+          {
+            "selected": false,
+            "text": "Whitman",
+            "value": "Whitman"
+          },
+          {
+            "selected": false,
+            "text": "Yakima",
+            "value": "Yakima"
+          }
+        ],
+        "query": "SHOW TAG VALUES ON covid WITH KEY = \"county\" WHERE state_province = '$state'",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "confirmed",
+          "value": "confirmed"
+        },
+        "datasource": "covid_influx_db",
+        "definition": "SHOW MEASUREMENTS",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Measurement (Diff)",
+        "multi": false,
+        "name": "measurement_2",
+        "options": [
+          {
+            "selected": true,
+            "text": "confirmed",
+            "value": "confirmed"
+          },
+          {
+            "selected": false,
+            "text": "deaths",
+            "value": "deaths"
+          }
+        ],
+        "query": "SHOW MEASUREMENTS",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "Washington",
+          "value": "Washington"
+        },
+        "datasource": "covid_influx_db",
+        "definition": "SHOW TAG VALUES ON covid WITH KEY = \"state_province\"",
+        "hide": 0,
+        "includeAll": false,
+        "label": "State (Diff)",
+        "multi": false,
+        "name": "state_2",
+        "options": [
+          {
+            "selected": false,
+            "text": "Alabama",
+            "value": "Alabama"
+          },
+          {
+            "selected": false,
+            "text": "Alaska",
+            "value": "Alaska"
+          },
+          {
+            "selected": false,
+            "text": "American Samoa",
+            "value": "American Samoa"
+          },
+          {
+            "selected": false,
+            "text": "Arizona",
+            "value": "Arizona"
+          },
+          {
+            "selected": false,
+            "text": "Arkansas",
+            "value": "Arkansas"
+          },
+          {
+            "selected": false,
+            "text": "California",
+            "value": "California"
+          },
+          {
+            "selected": false,
+            "text": "Colorado",
+            "value": "Colorado"
+          },
+          {
+            "selected": false,
+            "text": "Connecticut",
+            "value": "Connecticut"
+          },
+          {
+            "selected": false,
+            "text": "Delaware",
+            "value": "Delaware"
+          },
+          {
+            "selected": false,
+            "text": "Diamond Princess",
+            "value": "Diamond Princess"
+          },
+          {
+            "selected": false,
+            "text": "District of Columbia",
+            "value": "District of Columbia"
+          },
+          {
+            "selected": false,
+            "text": "Florida",
+            "value": "Florida"
+          },
+          {
+            "selected": false,
+            "text": "Georgia",
+            "value": "Georgia"
+          },
+          {
+            "selected": false,
+            "text": "Grand Princess",
+            "value": "Grand Princess"
+          },
+          {
+            "selected": false,
+            "text": "Guam",
+            "value": "Guam"
+          },
+          {
+            "selected": false,
+            "text": "Hawaii",
+            "value": "Hawaii"
+          },
+          {
+            "selected": false,
+            "text": "Idaho",
+            "value": "Idaho"
+          },
+          {
+            "selected": false,
+            "text": "Illinois",
+            "value": "Illinois"
+          },
+          {
+            "selected": false,
+            "text": "Indiana",
+            "value": "Indiana"
+          },
+          {
+            "selected": false,
+            "text": "Iowa",
+            "value": "Iowa"
+          },
+          {
+            "selected": false,
+            "text": "Kansas",
+            "value": "Kansas"
+          },
+          {
+            "selected": false,
+            "text": "Kentucky",
+            "value": "Kentucky"
+          },
+          {
+            "selected": false,
+            "text": "Louisiana",
+            "value": "Louisiana"
+          },
+          {
+            "selected": false,
+            "text": "Maine",
+            "value": "Maine"
+          },
+          {
+            "selected": false,
+            "text": "Maryland",
+            "value": "Maryland"
+          },
+          {
+            "selected": false,
+            "text": "Massachusetts",
+            "value": "Massachusetts"
+          },
+          {
+            "selected": false,
+            "text": "Michigan",
+            "value": "Michigan"
+          },
+          {
+            "selected": false,
+            "text": "Minnesota",
+            "value": "Minnesota"
+          },
+          {
+            "selected": false,
+            "text": "Mississippi",
+            "value": "Mississippi"
+          },
+          {
+            "selected": false,
+            "text": "Missouri",
+            "value": "Missouri"
+          },
+          {
+            "selected": false,
+            "text": "Montana",
+            "value": "Montana"
+          },
+          {
+            "selected": false,
+            "text": "Nebraska",
+            "value": "Nebraska"
+          },
+          {
+            "selected": false,
+            "text": "Nevada",
+            "value": "Nevada"
+          },
+          {
+            "selected": false,
+            "text": "New Hampshire",
+            "value": "New Hampshire"
+          },
+          {
+            "selected": false,
+            "text": "New Jersey",
+            "value": "New Jersey"
+          },
+          {
+            "selected": false,
+            "text": "New Mexico",
+            "value": "New Mexico"
+          },
+          {
+            "selected": false,
+            "text": "New York",
+            "value": "New York"
+          },
+          {
+            "selected": false,
+            "text": "North Carolina",
+            "value": "North Carolina"
+          },
+          {
+            "selected": false,
+            "text": "North Dakota",
+            "value": "North Dakota"
+          },
+          {
+            "selected": false,
+            "text": "Northern Mariana Islands",
+            "value": "Northern Mariana Islands"
+          },
+          {
+            "selected": false,
+            "text": "Ohio",
+            "value": "Ohio"
+          },
+          {
+            "selected": false,
+            "text": "Oklahoma",
+            "value": "Oklahoma"
+          },
+          {
+            "selected": false,
+            "text": "Oregon",
+            "value": "Oregon"
+          },
+          {
+            "selected": false,
+            "text": "Pennsylvania",
+            "value": "Pennsylvania"
+          },
+          {
+            "selected": false,
+            "text": "Puerto Rico",
+            "value": "Puerto Rico"
+          },
+          {
+            "selected": false,
+            "text": "Rhode Island",
+            "value": "Rhode Island"
+          },
+          {
+            "selected": false,
+            "text": "South Carolina",
+            "value": "South Carolina"
+          },
+          {
+            "selected": false,
+            "text": "South Dakota",
+            "value": "South Dakota"
+          },
+          {
+            "selected": false,
+            "text": "Tennessee",
+            "value": "Tennessee"
+          },
+          {
+            "selected": false,
+            "text": "Texas",
+            "value": "Texas"
+          },
+          {
+            "selected": false,
+            "text": "Utah",
+            "value": "Utah"
+          },
+          {
+            "selected": false,
+            "text": "Vermont",
+            "value": "Vermont"
+          },
+          {
+            "selected": false,
+            "text": "Virgin Islands",
+            "value": "Virgin Islands"
+          },
+          {
+            "selected": false,
+            "text": "Virginia",
+            "value": "Virginia"
+          },
+          {
+            "selected": true,
+            "text": "Washington",
+            "value": "Washington"
+          },
+          {
+            "selected": false,
+            "text": "West Virginia",
+            "value": "West Virginia"
+          },
+          {
+            "selected": false,
+            "text": "Wisconsin",
+            "value": "Wisconsin"
+          },
+          {
+            "selected": false,
+            "text": "Wyoming",
+            "value": "Wyoming"
+          }
+        ],
+        "query": "SHOW TAG VALUES ON covid WITH KEY = \"state_province\"",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": "*",
+        "current": {
+          "selected": false,
+          "text": "Yakima",
+          "value": [
+            "Yakima"
+          ]
+        },
+        "datasource": "covid_influx_db",
+        "definition": "SHOW TAG VALUES ON covid WITH KEY = \"county\" WHERE state_province = '$state_2'",
+        "hide": 0,
+        "includeAll": true,
+        "label": "County (Diff)",
+        "multi": true,
+        "name": "county_2",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Adams",
+            "value": "Adams"
+          },
+          {
+            "selected": false,
+            "text": "Asotin",
+            "value": "Asotin"
+          },
+          {
+            "selected": false,
+            "text": "Benton",
+            "value": "Benton"
+          },
+          {
+            "selected": false,
+            "text": "Chelan",
+            "value": "Chelan"
+          },
+          {
+            "selected": false,
+            "text": "Clallam",
+            "value": "Clallam"
+          },
+          {
+            "selected": false,
+            "text": "Clark",
+            "value": "Clark"
+          },
+          {
+            "selected": false,
+            "text": "Columbia",
+            "value": "Columbia"
+          },
+          {
+            "selected": false,
+            "text": "Cowlitz",
+            "value": "Cowlitz"
+          },
+          {
+            "selected": false,
+            "text": "Douglas",
+            "value": "Douglas"
+          },
+          {
+            "selected": false,
+            "text": "Ferry",
+            "value": "Ferry"
+          },
+          {
+            "selected": false,
+            "text": "Franklin",
+            "value": "Franklin"
+          },
+          {
+            "selected": false,
+            "text": "Garfield",
+            "value": "Garfield"
+          },
+          {
+            "selected": false,
+            "text": "Grant",
+            "value": "Grant"
+          },
+          {
+            "selected": false,
+            "text": "Grays Harbor",
+            "value": "Grays Harbor"
+          },
+          {
+            "selected": false,
+            "text": "Island",
+            "value": "Island"
+          },
+          {
+            "selected": false,
+            "text": "Jefferson",
+            "value": "Jefferson"
+          },
+          {
+            "selected": false,
+            "text": "King",
+            "value": "King"
+          },
+          {
+            "selected": false,
+            "text": "Kitsap",
+            "value": "Kitsap"
+          },
+          {
+            "selected": false,
+            "text": "Kittitas",
+            "value": "Kittitas"
+          },
+          {
+            "selected": false,
+            "text": "Klickitat",
+            "value": "Klickitat"
+          },
+          {
+            "selected": false,
+            "text": "Lewis",
+            "value": "Lewis"
+          },
+          {
+            "selected": false,
+            "text": "Lincoln",
+            "value": "Lincoln"
+          },
+          {
+            "selected": false,
+            "text": "Mason",
+            "value": "Mason"
+          },
+          {
+            "selected": false,
+            "text": "Okanogan",
+            "value": "Okanogan"
+          },
+          {
+            "selected": false,
+            "text": "Out of WA",
+            "value": "Out of WA"
+          },
+          {
+            "selected": false,
+            "text": "Pacific",
+            "value": "Pacific"
+          },
+          {
+            "selected": false,
+            "text": "Pend Oreille",
+            "value": "Pend Oreille"
+          },
+          {
+            "selected": false,
+            "text": "Pierce",
+            "value": "Pierce"
+          },
+          {
+            "selected": false,
+            "text": "San Juan",
+            "value": "San Juan"
+          },
+          {
+            "selected": false,
+            "text": "Skagit",
+            "value": "Skagit"
+          },
+          {
+            "selected": false,
+            "text": "Skamania",
+            "value": "Skamania"
+          },
+          {
+            "selected": false,
+            "text": "Snohomish",
+            "value": "Snohomish"
+          },
+          {
+            "selected": false,
+            "text": "Spokane",
+            "value": "Spokane"
+          },
+          {
+            "selected": false,
+            "text": "Stevens",
+            "value": "Stevens"
+          },
+          {
+            "selected": false,
+            "text": "Thurston",
+            "value": "Thurston"
+          },
+          {
+            "selected": false,
+            "text": "Unassigned",
+            "value": "Unassigned"
+          },
+          {
+            "selected": false,
+            "text": "Wahkiakum",
+            "value": "Wahkiakum"
+          },
+          {
+            "selected": false,
+            "text": "Walla Walla",
+            "value": "Walla Walla"
+          },
+          {
+            "selected": false,
+            "text": "Whatcom",
+            "value": "Whatcom"
+          },
+          {
+            "selected": false,
+            "text": "Whitman",
+            "value": "Whitman"
+          },
+          {
+            "selected": true,
+            "text": "Yakima",
+            "value": "Yakima"
+          }
+        ],
+        "query": "SHOW TAG VALUES ON covid WITH KEY = \"county\" WHERE state_province = '$state_2'",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5M",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "COVID",
+  "uid": "bBMpkrMMk",
+  "version": 19
+}
